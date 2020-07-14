@@ -32,6 +32,10 @@ def extract_death(data, list_of_cols):
     #combine the temporary dataframes
     ret.loc[:,:] = pd.concat([icd8, icd9, icd10])
     ret = ret.drop(list_of_cols[2], axis =1)
+    
+    #change kuolpvm to datetime64
+    ret.loc[:,list_of_cols[1]] = pd.to_datetime(ret[ret.columns[1]], format = '%Y%m%d')
+    
     #insert new column indicating inpatient. no in/out info
     #ret.insert(2, 'In/Out', [1]*len(ret.index))
     

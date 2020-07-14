@@ -5,7 +5,7 @@ Created on Wed Jul  1 13:47:05 2020
 @author: Atte
 """
 
-birth = ['TNRO', 'LAPSEN_SYNTYMAPVM']
+#birth = ['TNRO', 'LAPSEN_SYNTYMAPVM']
 
 def extract_birth(data, list_of_cols):
     #data = pandas dataframe
@@ -16,5 +16,8 @@ def extract_birth(data, list_of_cols):
     
     #include only rows with date
     ret = ret.loc[ret[list_of_cols[1]].isna() == False]
+    
+    #change date to datetime64
+    ret.loc[:,list_of_cols[1]] = ret[list_of_cols[1]].dt.normalize()
     
     return(ret)

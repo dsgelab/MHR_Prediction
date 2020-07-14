@@ -4,6 +4,8 @@ Created on Wed Jul  1 13:56:14 2020
 
 @author: Atte
 """
+import pandas as pd
+#li = ['TNRO', 'dg_date', 'dg_age','morpho', 'topography', 'cancertype_icd10']
 
 def cancer_extract(data, list_of_cols):
     #data = pandas dataframe
@@ -28,11 +30,11 @@ def cancer_extract(data, list_of_cols):
     ret[ret.columns[3]] = ret[ret.columns[3]].map(lambda x:'m-' + str(x), na_action='ignore')
     ret[ret.columns[4]] = ret[ret.columns[4]].map(lambda x:'t-' + str(x), na_action='ignore')
     
+    #change dg_date to datetime64
+    ret[ret.columns[1]] = pd.to_datetime(ret[ret.columns[1]], format = '%Y-%m-%d')
     
     #add in/outpatient encoding. no in/out info
     #ret.insert(2, 'In/Out', [1]*len(ret.index)) #should be ['TNRO', 'dg_date', 'in/out','dg_age', 'diag1',..., 'diag_n']
-    
-    
     
     return(ret)
 

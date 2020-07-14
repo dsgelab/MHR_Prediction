@@ -4,6 +4,8 @@ Created on Fri Jun 26 10:32:34 2020
 
 @author: Atte
 """
+import pandas as pd
+
 
 def extract_diagnoses_icd10(data, list_of_cols):
     #data = pandas dataframe
@@ -23,5 +25,8 @@ def extract_diagnoses_icd10(data, list_of_cols):
     #remove last numbers from diagnoses and add icd prefix. 
     for i in range(2,len(list_of_cols)):
         ret[list_of_cols[i]] = ret[list_of_cols[i]].map(lambda x: '10-' + str(x[:3]), na_action='ignore')
+    
+    #change arrival to datetime64
+    ret.loc[:,list_of_cols[1]] = pd.to_datetime(ret[ret.columns[1]], format='%d%b%Y:%H:%M:%S').dt.normalize()
     
     return(ret)

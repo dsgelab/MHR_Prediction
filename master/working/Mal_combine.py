@@ -4,9 +4,9 @@ Created on Wed Jul  1 12:42:55 2020
 
 @author: Atte
 """
-
-birth = ['TNRO', 'LAPSEN_SYNTYMAPVM'] #maybe 'RASKAUSNRO'
-mal = ['id', 'ICD9','ICD10'] #maybe 'RASKAUSNRO'
+import pandas as pd
+#birth = ['TNRO', 'LAPSEN_SYNTYMAPVM'] #maybe 'RASKAUSNRO'
+#mal = ['id', 'ICD9','ICD10'] #maybe 'RASKAUSNRO'
 
 def combine_malformation_date(mal_data, birth_data):
     #mal_data = pandas dataframe, information on diagnoses
