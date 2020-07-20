@@ -11,7 +11,7 @@ def extract_malformation(data, list_of_cols):
     #data = pandas dataframe
     #list_of_cols = list of columns to be extracted e.g. ['id', 'MANNER_OF_BIRTH', 'ICD9','ICD10']
     #
-    #Returns dataframe with given columns, with only live birth included and rows with no diagnoses dropped
+    #Returns dataframe with columns [id, icd9,icd10], with only live birth included and rows with no diagnoses dropped
     ret = data[list_of_cols]
     
     #include only rows with live birth and remove MANNER_OF_BIRTH column
