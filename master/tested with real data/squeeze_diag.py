@@ -24,5 +24,7 @@ def squeeze_diag(data, cancer=0):
             temp[i] = [j for j in temp[i] if str(j) != 'nan']
     
     data['diag'] = temp
+    #change column names to id and date
+    data.rename(columns= {data.columns[0]:'id', data.columns[1]:'date'}, inplace=True)
     return(data)
 

@@ -17,11 +17,18 @@ def extract_diagnoses(data, list_of_cols, icd):
     #remove rows with nans in main diagnose
     ret = ret.dropna(subset=[list_of_cols[2]])
     
-    #remove last numbers from diagnoses and add icd prefix. 
+    #remove last numbers from diagnoses, add icd prefix and change column name. 
+    #diag_number = 1
     for i in range(2,len(list_of_cols)):
         ret[list_of_cols[i]] = ret[list_of_cols[i]].map(lambda x: icd + '-' + str(x[:3]), na_action='ignore')
+        #name = 'diag' + str(diag_number)
+        #ret.rename(columns= {list_of_cols[i]:name}, inplace=True)
+        #diag_number +=1
     
     #insert new column indicating inpatient. no in/out info
     #ret.insert(2, 'In/Out', [1]*len(ret.index))
+    
+    #rename id and date
+    #ret.rename(columns= {list_of_cols[0]:'id', list_of_cols[1]:'date'}, inplace=True)
     
     return(ret)
