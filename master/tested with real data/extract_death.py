@@ -33,6 +33,13 @@ def extract_death(data, list_of_cols):
     ret.loc[:,:] = pd.concat([icd8, icd9, icd10])
     ret = ret.drop(list_of_cols[2], axis =1)
     
+    #remove rows with no date e.q. '       .'
+    #change '      .' -> ' '
+    ret[ret.columns[1]] = ret[ret.columns[1]].map(lambda x: ' ' if x[-1] == '.' else x)
+    
+    #remove rows with whitespace
+    ret = ret.drop(ret[ret[ret.columns[1]].str.isspace() == True].index)
+    
     #change kuolpvm to datetime64
     ret.loc[:,list_of_cols[1]] = pd.to_datetime(ret[ret.columns[1]], format = '%Y%m%d')
     
