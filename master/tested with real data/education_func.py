@@ -16,6 +16,8 @@ def extract_education(data):
     data = data.dropna(subset=[data.columns[1]])
     
     #change NaNs in sose to 91 = unknown
-    data[data.columns[3]].fillna(91)
+    data[data.columns[3]] = data[data.columns[3]].fillna(91)
+    #And Nans in iscfi2013 to 99
+    data[data.columns[2]] = data[data.columns[2]].fillna(99)
     
     return(data)

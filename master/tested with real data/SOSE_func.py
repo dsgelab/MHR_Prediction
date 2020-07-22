@@ -16,7 +16,7 @@ def extract_sose(data, list_of_cols):
     ret = ret.dropna(subset=[list_of_cols[1]])
     
     #change NaNs in sose to 99 = unknown
-    ret[list_of_cols[2]].fillna(99)
+    ret[list_of_cols[2]] = ret[list_of_cols[2]].fillna(99)
     
     return(ret)
     
