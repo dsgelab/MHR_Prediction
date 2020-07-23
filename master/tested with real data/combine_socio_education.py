@@ -12,7 +12,7 @@ def combine_sose_edu(sose_data, edu_data):
     #
     #Returns dataframe with sosieconomic status combined with education given a year
     #ret = dataframe with columns [id, year, sose, iscfi2013,kaste_t2]
-    ret = pd.merge(sose_data, edu_data, on=['TNRO', 'vuosi']) #should be ['TNRO', vuosi, sose, iscfi2013,kaste_t2]
+    ret = pd.merge(sose_data, edu_data, how ='outer', on=['TNRO', 'vuosi']) #should be ['TNRO', vuosi, sose, iscfi2013,kaste_t2]
     
     #change column names to id and year
     ret.rename(columns={ret.columns[0]:'id', ret.columns[1]:'year'}, inplace=True)

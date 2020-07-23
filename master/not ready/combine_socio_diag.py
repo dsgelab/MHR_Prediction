@@ -23,4 +23,6 @@ def combine_socio_diag(socio_data, diag_data):
     
     diag = ret.pop(ret.columns[6])
     ret['diag'] =diag #[id, date, age, f_id, m_id, sex, sose, iscfi, kaste, diag]
+    diag_data.drop('year', axis=1, inplace=True)
+    
     return(ret)
