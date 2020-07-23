@@ -5,6 +5,7 @@ Created on Wed Jul 15 17:26:02 2020
 @author: Atte
 """
 import pandas as pd
+import numpy as np
 
 
 def combine_diag_ped(diag, ped, cancer=0):
@@ -18,8 +19,8 @@ def combine_diag_ped(diag, ped, cancer=0):
     ret = pd.merge(diag, ped, on='id') 
     
     if cancer == 0:
-        #calculate age using date and birth_year and add it to dataframe and remove b_year
-        age = ret[ret.columns[1]].map(lambda x: float(x.year)) - ret[ret.columns[-1]]
+        #calculate age using date and birth_date and add it to dataframe and remove b_date
+        age = (ret[ret.columns[1]]-ret[ret.columns[-1]]) / np.timedelta64(365, 'D')
         ret.insert(2, 'age', age, True) # [id, date, age,diag, father_id, mother_id, sex, birth_year]
         
     ret = ret.drop(ret.columns[-1],axis=1) # [id, date, age,diag, father_id, mother_id, sex]
