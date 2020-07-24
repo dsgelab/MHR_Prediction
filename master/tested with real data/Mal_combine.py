@@ -13,7 +13,7 @@ def combine_malformation_date(mal_data, birth_data):
     #birth_data = pandas dataframe, information of date
     #
     #Returns dataframe with date combined to diagnoses [id,date,icd9,icd10]
-    ret = pd.merge(birth_data, mal_data, on=['TNRO']) #should be ['TNRO', DATE, ICD9,ICD10]
+    ret = pd.merge(birth_data, mal_data, how='right', on=['TNRO']) #should be ['TNRO', DATE, ICD9,ICD10]
     
     #remove NaNs in diagnoses
     ret = ret.loc[(ret['ICD9'].isna()==False) | (ret['ICD10'].isna()==False)]

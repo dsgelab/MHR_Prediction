@@ -10,13 +10,13 @@ import numpy as np
 
 def combine_diag_ped(diag, ped, cancer=0):
     #diag = dataframe containing [id, date, diag]
-    #ped = dataframe containing [id, father_id, mother_id, sex, birth_year]
+    #ped = dataframe containing [id, father_id, mother_id, sex, birth_date]
     #cancer = int, indicating if data comes from cancer file [id,date,age,diag]
     #
     #returns dataframe [id, date, age, father_id, mother_id, sex, diag]
     
     #combine dataframes on id -> result [id, date, diag, father_id, mother_id, sex, birth_year]
-    ret = pd.merge(diag, ped, on='id') 
+    ret = pd.merge(diag, ped,how='left', on='id') 
     
     if cancer == 0:
         #calculate age using date and birth_date and add it to dataframe and remove b_date
