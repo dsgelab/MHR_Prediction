@@ -5,7 +5,7 @@ Created on Thu Jun 25 15:40:45 2020
 @author: Atte
 """
 #Please use list_of_cols in form ['TNRO','TUPVA', 'diag1',...,'diag_n']
-def extract_diagnoses(data, list_of_cols, icd):
+def extract_HILMO_8_9(data, list_of_cols, icd):
     #data = pandas dataframe
     #list_of_cols = list of columns to be extracted e.g. ['id', 'arrival', 'diag_1',..., 'diag_n']
     #icd = string of icd code used in original file e.g. 'icd8' or 'icd9'

@@ -5,7 +5,7 @@ Created on Fri Jun 26 12:39:40 2020
 @author: Atte
 """
 
-def extract_education(data):
+def extract_edu(data):
     #data = pandas dataframe
     #list_of_cols = list of columns to be extracted e.g. ['TNRO', 'vuosi', 'kaste_t2']
     #

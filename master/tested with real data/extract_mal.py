@@ -7,7 +7,7 @@ Created on Mon Jun 29 10:52:02 2020
 
 
 
-def extract_malformation(data, list_of_cols):
+def extract_mal(data, list_of_cols):
     #data = pandas dataframe
     #list_of_cols = list of columns to be extracted e.g. ['id', 'MANNER_OF_BIRTH', 'ICD9','ICD10']
     #

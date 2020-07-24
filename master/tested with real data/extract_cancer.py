@@ -7,7 +7,7 @@ Created on Wed Jul  1 13:56:14 2020
 import pandas as pd
 #li = ['TNRO', 'dg_date', 'dg_age','morpho', 'topography', 'cancertype_icd10']
 
-def cancer_extract(data, list_of_cols):
+def extract_cancer(data, list_of_cols):
     #data = pandas dataframe
     #list_of_cols = list of columns to be extracted e.g. ['TNRO', 'dg_date', 'dg_age','morpho', 'topography', 'cancertype_icd10']
     #

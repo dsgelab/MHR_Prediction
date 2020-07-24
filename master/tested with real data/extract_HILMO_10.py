@@ -7,7 +7,7 @@ Created on Fri Jun 26 10:32:34 2020
 import pandas as pd
 
 
-def extract_diagnoses_icd10(data, list_of_cols):
+def extract_HILMO_10(data, list_of_cols):
     #data = pandas dataframe
     #list_of_cols = list of columns to be extracted e.g. ['id', 'arrival', ('in/out',) diag_1',..., 'diag_n']
     #

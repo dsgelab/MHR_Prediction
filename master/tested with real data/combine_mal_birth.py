@@ -8,7 +8,7 @@ import pandas as pd
 #birth = ['TNRO', 'LAPSEN_SYNTYMAPVM'] #maybe 'RASKAUSNRO'
 #mal = ['id', 'ICD9','ICD10'] #maybe 'RASKAUSNRO'
 
-def combine_malformation_date(mal_data, birth_data):
+def combine_mal_birth(mal_data, birth_data):
     #mal_data = pandas dataframe, information on diagnoses
     #birth_data = pandas dataframe, information of date
     #
