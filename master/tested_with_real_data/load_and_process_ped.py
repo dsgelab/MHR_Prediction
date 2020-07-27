@@ -11,8 +11,6 @@ def load_and_process_ped(folder):
     #folder = string of path to ped csv
     ped = pd.read_csv(folder, encoding='UTF-8')
     
-    #drop index column
-    ped.drop(ped.columns[0], axis=1, inplace=True)
     
     #drop rows with nans in id
     ped = ped.dropna(subset=[ped.columns[0]])

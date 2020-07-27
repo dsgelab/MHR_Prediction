@@ -11,7 +11,7 @@ def extract_cancer(data, list_of_cols):
     #data = pandas dataframe
     #list_of_cols = list of columns to be extracted e.g. ['TNRO', 'dg_date', 'dg_age','morpho', 'topography', 'cancertype_icd10']
     #
-    #Returns dataframe with ['TNRO', 'dg_date', 'dg_age', 'diag1', 'diag2']
+    #Returns dataframe with ['TNRO', 'dg_date', 'dg_age','morpho', 'topography', 'diag1', 'diag2']
     ret = data[list_of_cols]
     
     #remove rows with nans in diagnose. data is complete

@@ -17,6 +17,7 @@ def squeeze_diag(data, cancer=0):
         data = data.loc[:,data.columns[0:3]]
         for i in range(len(temp)):
             temp[i] = [j for j in temp[i] if str(j) != 'None']
+        data.rename(columns= {data.columns[2]:'age'}, inplace=True)
     else:
         temp = data[data.columns[2:]].values.tolist()
         data = data.loc[:,data.columns[0:2]]
