@@ -11,7 +11,7 @@ from squeeze_diag import squeeze_diag
 from combine_diag_ped import combine_diag_ped
 from load_and_process_ped import load_and_process_ped
 
-#load education data and combine them 
+#load cancer data and extract them 
 cancer = pd.read_csv('/homes/aliu/DSGE_LRS/input/fcr_all_data.csv',encoding='UTF-8', sep=';', parse_dates=['dg_date'])
 li_c = ['TNRO', 'dg_date', 'dg_age', 'morpho', 'topo','cancertype_icd10']
 cancer = extract_cancer(cancer, li_c) #[id, date, age, morpho, topo, diag-10]
