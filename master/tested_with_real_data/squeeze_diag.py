@@ -7,17 +7,22 @@ Created on Mon Jul 13 11:51:23 2020
 
 def squeeze_diag(data, cancer=0):
     #data = pandas dataframe [id, date,diag1,diag2,...]
-    #cancer = int, indicating if the file is from cancer dataset [id,date,age, diag1,...]
+    #cancer = int, indicating if the file is from cancer dataset [id,date,age, sex,diag1,...]
     #
-    #Returns dataframe with ['id', 'date', 'diag'] or [id,date,age, diag]
+    #Returns dataframe with ['id', 'date', 'diag'] or [id,date,age, sex,diag]
     
     #take diagnoses to a list
     if cancer:
-        temp = data[data.columns[3:]].values.tolist()
-        data = data.loc[:,data.columns[0:3]]
+        #extract diagnoses on each row to a list
+        temp = data[data.columns[4:]].values.tolist()
+        #remove diagnoses rows
+        data = data.loc[:,data.columns[0:4]]
+        
+        #remove missing values in diagnose lists
         for i in range(len(temp)):
             temp[i] = [j for j in temp[i] if str(j) != 'None']
-        data.rename(columns= {data.columns[2]:'age'}, inplace=True)
+        
+        data.rename(columns= {data.columns[2]:'age'}, inplace=True) #[TNRO, TULOPV, age, sex]
     else:
         temp = data[data.columns[2:]].values.tolist()
         data = data.loc[:,data.columns[0:2]]
