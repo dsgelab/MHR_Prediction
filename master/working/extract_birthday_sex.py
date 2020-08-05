@@ -36,7 +36,7 @@ def extract_birthday_sex(data, id_col=None, rel_col=None, sex_col=None, bdate_co
     
     #change birthdate to datetime64
     if bdate_col != None:
-        data.loc[:,bdate_col] = pd.to_datetime(data[bdate_col], format = t_format).dt.normalize()
+        data.loc[:,bdate_col] = pd.to_datetime(data[bdate_col], format = t_format, errors='coerce').dt.normalize()
         data.rename(columns = {bdate_col:'bdate'}, inplace=True)
         assert (data['bdate'].dtype == np.dtype('datetime64[ns]')), "Date should be of type datetime64"
     
