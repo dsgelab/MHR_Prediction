@@ -11,24 +11,14 @@ def extract_HILMO_8_9(data, list_of_cols, icd):
     #icd = string of icd code used in original file e.g. 'icd8' or 'icd9'
     #
     #Returns dataframe with given columns, where diagnoses are limited to 3 characters & rows
-    #with no diagnoses are removed. [TNRO, arrival, (in/out,) diagnoses]
+    #with no diagnoses are removed. [TNRO, arrival, diag1,...,diagn]
     ret = data[list_of_cols]
     
     #remove rows with nans in main diagnose
     ret = ret.dropna(subset=[list_of_cols[2]])
     
     #remove last numbers from diagnoses, add icd prefix and change column name. 
-    #diag_number = 1
     for i in range(2,len(list_of_cols)):
         ret[list_of_cols[i]] = ret[list_of_cols[i]].map(lambda x: icd + '-' + str(x[:3]), na_action='ignore')
-        #name = 'diag' + str(diag_number)
-        #ret.rename(columns= {list_of_cols[i]:name}, inplace=True)
-        #diag_number +=1
-    
-    #insert new column indicating inpatient. no in/out info
-    #ret.insert(2, 'In/Out', [1]*len(ret.index))
-    
-    #rename id and date
-    #ret.rename(columns= {list_of_cols[0]:'id', list_of_cols[1]:'date'}, inplace=True)
-    
+        
     return(ret)

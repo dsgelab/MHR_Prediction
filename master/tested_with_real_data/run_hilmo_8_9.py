@@ -31,10 +31,11 @@ H_92 = squeeze_diag(H_92) #[id, date, diag]
 #concatenate all data
 H_8 = pd.concat([H_8, H_91, H_92])
 
-#load ped 
+#load ped and bdate_sex 
 ped = load_and_process_ped("/homes/afohr/data/ped.csv") #[id, father_id, mother_id, sex, b_date]
+bdate_sex = pd.read_csv("/homes/afohr/data/bdate_sex.csv", parse_dates=[1]) #[id,bdate,sex]
 
 #combine death diags with pedigree info
-H_8 = combine_diag_ped(H_8, ped) #[id, date, age, f_id, m_id, sex, diag]
+H_8 = combine_diag_ped(H_8, ped, bdate_sex) #[id, date, age, sex, f_id, m_id, diag]
 
 H_8.to_csv("/homes/afohr/data/Hilmo_8_9_ped.csv", index=False)
