@@ -17,4 +17,12 @@ for i, chunk in enumerate(data):
     #remove duplicates
     df = df.loc[df.duplicated() == False]
 
+data = pd.read_sas('/homes/aliu/DSGE_LRS/input/thl2019_804_tljslv.sas7bdat', chunksize = 2650000, encoding='latin-1')
+
+for i, chunk in enumerate(data):
+    df = pd.concat([df, extract_birthday_sex(chunk, id_col= 'SUKULAISEN_TNRO', sex_col='SUKUPUOLI', bdate_col='SUKULAISEN_SYNTYMAPV')])
+    #remove duplicates
+    df = df.loc[df.duplicated() == False]
+
+
 df.to_csv("/homes/afohr/data/bdate_sex.csv", index=False)
