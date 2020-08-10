@@ -14,9 +14,7 @@ from combine_diag_ped import combine_diag_ped
 from load_and_process_ped import load_and_process_ped
 
 #load birth and malformation data and extract them 
-birth = pd.read_sas('/homes/aliu/DSGE_LRS/input/mbr_children_1987_2018.sas7bdat', encoding='latin-1')
-li_b = ['TNRO', 'LAPSEN_SYNTYMAPVM']
-birth = extract_birth(birth, li_b) #[id, date]
+bdate = pd.read_csv("/homes/afohr/data/bdate_sex.csv", parse_dates=[1]) # [id, bdate, sex]
 
 mal = pd.read_sas('/homes/aliu/DSGE_LRS/input/anomalies_children_1987_2015_dg.sas7bdat', encoding='latin-1') 
 li = ['TNRO','MANNER_OF_BIRTH', 'ICD9', 'ICD10']
@@ -28,7 +26,7 @@ mal2 = extract_mal(mal2, li)
 mal = pd.concat([mal, mal2])
 
 #combine birth and mal
-mal = combine_mal_birth(mal, birth) #[id, date,icd9, icd10]
+mal = combine_mal_birth(mal, bdate) #[id, date,icd9, icd10]
 
 #squeeze diags
 mal = squeeze_diag(mal) #[id, date, diag]
@@ -37,6 +35,6 @@ mal = squeeze_diag(mal) #[id, date, diag]
 ped = load_and_process_ped("/homes/afohr/data/ped.csv") #[id, father_id, mother_id, sex, b_date]
 
 #combine mal diags with pedigree info
-mal = combine_diag_ped(mal, ped) #[id, date, age, f_id, m_id, sex, diag]
+mal = combine_diag_ped(mal, ped, bdate) #[id, date, age, f_id, m_id, sex, diag]
 
 mal.to_csv("/homes/afohr/data/mal_ped.csv", index=False)
