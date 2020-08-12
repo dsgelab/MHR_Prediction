@@ -32,12 +32,13 @@ data = pd.read_csv('/homes/aliu/DSGE_LRS/input/THL2019_804_hilmo_COMPLETE.csv', 
 
 #load ped 
 ped = load_and_process_ped("/homes/afohr/data/ped.csv") #[id, father_id, mother_id, sex, b_date]
+bdate = pd.read_csv("/homes/afohr/data/bdate_sex.csv", parse_dates=[1]) # [id, bdate, sex]
 
 for i, chunk in enumerate(data):
     diag = chunk
     diag = extract_HILMO_10(diag, li) # id, date, icd1- 28, pitkadiag1-33
     diag = squeeze_diag(diag) #id, date, diag
     #combine diags with pedigree info
-    diag = combine_diag_ped(diag, ped) #[id, date, age, f_id, m_id, sex, diag]
+    diag = combine_diag_ped(diag, ped, bdate) #[id, date, age, sex, f_id, m_id, diag]
     name = "/homes/afohr/data/Hilmo_10_ped_" + str(i) + ".csv"
     diag.to_csv(name, index=False)

@@ -22,8 +22,9 @@ death = squeeze_diag(death) #[id, date, diag]
 
 #load ped 
 ped = load_and_process_ped("/homes/afohr/data/ped.csv") #[id, father_id, mother_id, sex, b_date]
+bdate = pd.read_csv("/homes/afohr/data/bdate_sex.csv", parse_dates=[1]) # [id, bdate, sex]
 
 #combine death diags with pedigree info
-death = combine_diag_ped(death, ped) #[id, date, age, f_id, m_id, sex, diag]
+death = combine_diag_ped(death, ped, bdate) #[id, date, age, f_id, m_id, sex, diag]
 
 death.to_csv("/homes/afohr/data/death_ped.csv", index=False)
