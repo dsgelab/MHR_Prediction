@@ -8,10 +8,10 @@ import pandas as pd
 
 
 def combine_diag_sose(diag_data, sose_data):
-    #socio_data = pandas dataframe, information on sociodemographics [id, year, sose, iscfi,kaste_t2]
-    #diag_data = pandas dataframe, [id, date, age, father_id, mother_id, sex, diag]
+    #socio_data = pandas dataframe, information on sociodemographics [id, year, sose, income, iscfi, kaste_t2]
+    #diag_data = pandas dataframe, [id, date, age, sex, father_id, mother_id, diag]
     #
-    #ret =dataframe with columns  [id, date, age, father_id, mother_id, sex, sose, iscfi, kaste, diag]
+    #ret =dataframe with columns  [id, date, age, sex, father_id, mother_id, sose, income, iscfi, kaste, diag]
     
     #make new column with year info
     diag_data['year'] = diag_data[diag_data.columns[1]].map(lambda x: x.year)

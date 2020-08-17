@@ -17,7 +17,7 @@ li_c = ['TNRO', 'dg_date', 'dg_age', 'morpho', 'topo','cancertype_icd10']
 cancer = extract_cancer(cancer, id_col='TNRO', date_col='dg_date', age_col='dg_age', sex_col='sex', diag_cols=['morpho', 'topo','cancertype_icd10']) #[id, date, age, sex, morpho, topo, diag-10]
 
 #squeeze diags
-cancer = squeeze_diag(cancer, cancer=1) #[id, date, age, sex, diag]
+cancer = squeeze_diag(cancer, cancer=1, non_diag_cols=4) #[id, date, age, sex, diag]
 
 #load ped 
 ped = load_and_process_ped("/homes/afohr/data/ped.csv") #[id, father_id, mother_id, sex, b_date]
